@@ -1,0 +1,36 @@
+# --- Basis data & berkas runtime (JANGAN di-commit) ---
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.Python
+
+# --- Rahasia / konfigurasi lokal ---
+.env
+.env.*
+!.env.example
+*.pem
+*service-account*.json
+*kredensial*.json
+
+# --- Hasil pengujian (gambar & PDF besar) ---
+qa/*.png
+qa/*.pdf
+qa/*.json
+
+# --- Editor & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Lain-lain ---
+*.log
+*.zip

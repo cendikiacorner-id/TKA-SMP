@@ -1,0 +1,27 @@
+# Konfigurasi deploy otomatis untuk Render.com (blueprint).
+# Repo GitHub -> Render -> New Blueprint -> pilih repo ini.
+services:
+  - type: web
+    name: tka-cerdas
+    runtime: python
+    plan: starter
+    buildCommand: "echo 'Tidak perlu build: hanya pustaka standar Python'"
+    startCommand: "python server.py"
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: TKA_SEED_DEMO
+        value: "0"                 # WAJIB 0 di produksi: tanpa akun & data demo
+      - key: TKA_ADMIN_EMAIL
+        sync: false                # isi manual di dashboard Render
+      - key: TKA_ADMIN_PASSWORD
+        sync: false                # isi manual, gunakan kata sandi kuat
+      - key: GURU_CODE
+        sync: false                # kode akses pendaftaran guru
+      - key: TKA_KKM
+        value: "70"
+    disk:
+      name: data-tka
+      mountPath: /data             # basis data SQLite tersimpan permanen
+      sizeGB: 1
