@@ -19,8 +19,9 @@ python3 server.py
 
 Buka **http://localhost:8000**. Ganti port bila perlu: `PORT=3000 python3 server.py`.
 
-> **Mau langsung online?** Repo ini sudah siap untuk GitHub — lihat **[DEPLOY.md](DEPLOY.md)**
-> untuk langkah push ke GitHub, deploy ke Render/Railway/Docker, dan daftar periksa keamanan.
+> **Mau langsung online?** Repo ini sudah siap untuk GitHub:
+> - **[DEPLOY.md](DEPLOY.md)** — push ke GitHub, deploy ke Render/Railway/Docker, daftar periksa keamanan
+> - **[DEPLOY-CLOUDFLARE.md](DEPLOY-CLOUDFLARE.md)** — memakai Cloudflare Tunnel / proxy / Access
 
 ## 🔑 Akun demo
 

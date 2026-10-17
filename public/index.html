@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5B4BFF">
+  <title>TKA Cerdas — Asesmen Literasi &amp; Numerasi SMP</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="toast-root" aria-live="polite"></div>
+
+  <!-- ==================== AUTH ==================== -->
+  <section id="auth-view" class="view">
+    <div class="auth-wrap">
+      <aside class="auth-hero">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+        <div class="hero-body">
+          <div class="logo-badge">🎓</div>
+          <h1>TKA Cerdas</h1>
+          <p class="hero-tag">Asesmen Literasi &amp; Numerasi<br>jenjang SMP — penilaian otomatis.</p>
+          <ul class="hero-list">
+            <li><span class="hl-ico">⚡</span> Nilai keluar seketika setelah mengumpulkan</li>
+            <li><span class="hl-ico">📊</span> Analisis hasil per butir soal untuk guru</li>
+            <li><span class="hl-ico">☁️</span> Rekap otomatis ke Google Sheets</li>
+          </ul>
+        </div>
+        <div class="hero-float f1">📚</div>
+        <div class="hero-float f2">🧮</div>
+        <div class="hero-float f3">✏️</div>
+      </aside>
+
+      <div class="auth-panel">
+        <div class="tabbar" role="tablist">
+          <button class="tabbtn active" data-tab="login" role="tab" aria-selected="true" type="button">Masuk</button>
+          <button class="tabbtn" data-tab="register" role="tab" aria-selected="false" type="button">Daftar</button>
+        </div>
+
+        <form id="login-form" class="auth-form" novalidate>
+          <h2>Selamat datang 👋</h2>
+          <p class="sub">Masuk sebagai siswa atau guru.</p>
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="nama@sekolah.sch.id" autocomplete="email" required>
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" placeholder="••••••" autocomplete="current-password" required>
+          <p class="form-error" id="login-error" role="alert"></p>
+          <button class="btn primary" type="submit">Masuk</button>
+          <div class="demo-row">
+            <span>Akun demo:</span>
+            <button type="button" class="chip-demo" data-demo="siswa">Siswa</button>
+            <button type="button" class="chip-demo" data-demo="guru">Guru</button>
+          </div>
+        </form>
+
+        <form id="register-form" class="auth-form hidden" novalidate>
+          <h2>Buat akun baru ✨</h2>
+          <p class="sub">Pilih peran sesuai kebutuhan.</p>
+          <label for="reg-name">Nama lengkap</label>
+          <input id="reg-name" type="text" placeholder="Nama kamu" autocomplete="name" required>
+          <label for="reg-email">Email</label>
+          <input id="reg-email" type="email" placeholder="nama@sekolah.sch.id" autocomplete="email" required>
+          <label for="reg-password">Password</label>
+          <input id="reg-password" type="password" placeholder="Minimal 6 karakter" autocomplete="new-password" required>
+          <label for="reg-role">Daftar sebagai</label>
+          <select id="reg-role">
+            <option value="siswa">Siswa</option>
+            <option value="guru">Guru / Panitia</option>
+          </select>
+          <div id="guru-code-wrap" class="hidden">
+            <label for="reg-guru-code">Kode akses guru</label>
+            <input id="reg-guru-code" type="text" placeholder="Diminta dari admin sekolah">
+            <p class="hint">Kode bawaan: <code>GURU2026</code> (dapat diubah admin).</p>
+          </div>
+          <p class="form-error" id="register-error" role="alert"></p>
+          <button class="btn primary" type="submit">Daftar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APLIKASI ==================== -->
+  <section id="app-view" class="view hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">🎓</span>
+        <span class="brand-text">TKA Cerdas</span>
+        <span id="role-badge" class="role-badge">Siswa</span>
+      </div>
+      <div class="top-right">
+        <div class="userchip">
+          <span id="avatar" class="avatar">?</span>
+          <span id="user-name" class="uname">Pengguna</span>
+        </div>
+        <button id="logout-btn" class="btn ghost sm" type="button">Keluar</button>
+      </div>
+    </header>
+
+    <nav id="guru-nav" class="mainnav hidden">
+      <button class="navbtn active" data-gnav="analytics" type="button">📊 Analisis Hasil</button>
+      <button class="navbtn" data-gnav="bank" type="button">📚 Bank Soal</button>
+      <button class="navbtn" data-gnav="jadwal" type="button">🗓️ Jadwal &amp; Token</button>
+      <button class="navbtn" data-gnav="kelas" type="button">👥 Kelas</button>
+      <button class="navbtn" data-gnav="settings" type="button">⚙️ Pengaturan</button>
+    </nav>
+
+    <main class="container">
+      <div id="student-home" class="hidden"></div>
+      <div id="exam-view" class="hidden"></div>
+      <div id="result-view" class="hidden"></div>
+      <div id="guru-analytics" class="hidden"></div>
+      <div id="guru-bank" class="hidden"></div>
+      <div id="guru-jadwal" class="hidden"></div>
+      <div id="guru-kelas" class="hidden"></div>
+      <div id="guru-settings" class="hidden"></div>
+    </main>
+  </section>
+
+  <!-- ==================== MODAL ==================== -->
+  <dialog id="modal" aria-labelledby="modal-title">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h3 id="modal-title">Konfirmasi</h3>
+        <button id="modal-close" class="iconbtn" type="button" aria-label="Tutup">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>
